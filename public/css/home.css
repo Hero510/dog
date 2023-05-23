@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.hero-image img {
+  width: 100%;
+  height: auto;
+}
+
+.hero_container { /*親div*/
+  position: relative;
+}
+
+.hero-text h1 {
+  position: absolute;
+  color: #ffffff; /*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-size: 2.5em; /*サイズ2倍*/
+  top: 25px;
+  left: 35px;
+}
+
+.hero-text p {
+  position: absolute;
+  color: #ffffff; /*文字は白に*/
+  font-weight: bold; /*太字に*/
+  font-size: 0.9em; /*サイズ2倍*/
+  top: 115px;
+  left: 30px;
+}
