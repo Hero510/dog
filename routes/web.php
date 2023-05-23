@@ -16,10 +16,21 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-use App\Http\Controllers\HomeController;
-Route::controller(HomeController::class)->group(function() {
-    Route::get('home', 'add')->name('home');
+use App\Http\Controllers\Dog\HomeController;
+    Route::controller(HomeController::class)->group(function() {
+    Route::get('home', 'index')->name('home');
+    
 });
+
+use App\Http\Controllers\Dog\MypageController;
+    Route::controller(MypageController::class)->group(function() {
+    Route::get('mypage', 'index')->name('mypage');
+});
+
+use App\Http\Controllers\Dog\UserController;
+    Route::get('user/{id}/edit', [UserController::class,'edit'])->name('user.edit');
+    Route::put('user/{user}', [UserController::class,'update'])->name('user.update');
+
 
 Auth::routes();
 

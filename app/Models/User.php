@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nickname',
     ];
 
     /**
@@ -40,5 +41,9 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+    
+    protected static $rules = [
+    'password' => 'required|min:8|confirmed',
     ];
 }

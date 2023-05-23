@@ -36,7 +36,11 @@
                         
                         <ul class="navbar-nav d-flex">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">会員登録</a>
+                                @if (Auth::check())
+                                    <a class="nav-link" href="{{ route('mypage') }}">マイページ</a>
+                                @else
+                                    <a class="nav-link" href="{{ route('register') }}">会員登録</a>
+                                @endif
                             </li>
                             <li class="nav-item">
                                 @if (Auth::check())
