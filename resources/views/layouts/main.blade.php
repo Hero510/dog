@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <nav class="navbar navbar-expand-md">
-                    <a class="navbar-brand" href="#"><img src="{{ asset('img/犬のシルエット.png') }}"></a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('img/犬のシルエット.png') }}"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

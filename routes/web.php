@@ -25,6 +25,7 @@ use App\Http\Controllers\Dog\HomeController;
 use App\Http\Controllers\Dog\MypageController;
     Route::controller(MypageController::class)->group(function() {
     Route::get('mypage', 'index')->name('mypage');
+    Route::get('dog/create','create')->name('dog.create');
 });
 
 use App\Http\Controllers\Dog\UserController;

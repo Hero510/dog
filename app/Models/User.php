@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,4 +47,11 @@ class User extends Authenticatable
     protected static $rules = [
     'password' => 'required|min:8|confirmed',
     ];
+    
+    public static $editRules = array(
+
+    'password' => 'confirmed'
+
+    );
+    
 }
