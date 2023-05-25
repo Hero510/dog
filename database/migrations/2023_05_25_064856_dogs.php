@@ -13,14 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('dog_id')->constrained('dogs');
-            $table->string('title');
-            $table->string('body');
-            $table->string('image_path')->nullable();
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -30,7 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        //
     }
 };
-

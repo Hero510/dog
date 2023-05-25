@@ -25,13 +25,19 @@ use App\Http\Controllers\Dog\HomeController;
 use App\Http\Controllers\Dog\MypageController;
     Route::controller(MypageController::class)->group(function() {
     Route::get('mypage', 'index')->name('mypage');
-    Route::get('dog/create','create')->name('dog.create');
 });
 
 use App\Http\Controllers\Dog\UserController;
-    Route::get('user/{id}/edit', [UserController::class,'edit'])->name('user.edit');
-    Route::put('user/{user}', [UserController::class,'update'])->name('user.update');
+    Route::controller(UserController::class)->group(function() {
+    Route::get('user/{id}/edit', 'edit')->name('user.edit');
+    Route::put('user/{user}', 'update')->name('user.update');
+});
 
+use App\Http\Controllers\Dog\DogController;
+    Route::controller(DogController::class)->group(function() {
+    Route::get('dog/create', 'add')->name('dog.add');
+    Route::post('dog/create', 'create')->name('dog.create');
+});
 
 Auth::routes();
 

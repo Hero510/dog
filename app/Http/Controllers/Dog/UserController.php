@@ -24,11 +24,11 @@ class UserController extends Controller
 
     {
     
-        // バリデーションルール
+        // バリデーション\
         
         $this->validate($request, User::$editRules);
         
-        // 対象レコード取得
+        // 対象レコード
         
         $auth = User::find($id);
         
@@ -40,7 +40,7 @@ class UserController extends Controller
         
         unset($form['_token']);
         
-        // フォーム要素の評価
+       
         
         foreach ($form as $key => $value) {
         
@@ -54,7 +54,7 @@ class UserController extends Controller
         
          }
         
-        // パスワード処理
+       
         
         // ハッシュ化
         

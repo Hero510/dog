@@ -69,6 +69,21 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+              <label class="col-sm-2">商品カテゴリ</label>
+              <div class="col-sm-3">
+                <select name="categoryId" class="form-control">
+                  <option value="">未選択</option>
+
+                  @foreach($categories as $id => $dog_breed)
+                  <option value="{{ $id }}">
+                    {{ $dog_breed }}
+                  </option>  
+                  @endforeach
+                </select>
+              </div>
+            </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">登録する</button>

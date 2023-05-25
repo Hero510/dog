@@ -15,9 +15,4 @@ class MypageController extends Controller
         // dd($auth);
         return view('dog.mypage', ['auth' => $auth]);
     }
-    
-    public function create()
-    {
-        return view('dog.create');
-    }
 }

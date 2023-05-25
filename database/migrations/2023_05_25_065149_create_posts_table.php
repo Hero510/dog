@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dogs', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->string('name');
-            $table->foreignId('dog_breed_id')->constrained('dog_breeds');
-            $table->string('age');
-            $table->string('breeding_way');
-            $table->string('house');
-            $table->string('walk');
+            $table->foreignId('dog_id')->constrained('dogs')->onDelete('cascade');
+            $table->string('title');
+            $table->string('body');
             $table->string('image_path')->nullable();
-            $table->string('food');
             $table->timestamps();
         });
     }
@@ -35,6 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dogs');
+        Schema::dropIfExists('posts');
     }
 };
+
