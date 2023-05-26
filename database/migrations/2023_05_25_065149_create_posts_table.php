@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dog_id')->constrained('dogs')->onDelete('cascade');
+            $table->foreignId('dog_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('body');
             $table->string('image_path')->nullable();

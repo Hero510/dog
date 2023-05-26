@@ -32,11 +32,11 @@
                 <h2>Other Information</h2>
              
                  
-                <!-- Add other information column here -->
+                <!-- 愛犬情報表示-->
                 <tbody>
                     <table class="table table-striped"> 
                         <td>
-                            <a href="{{ route('dog.create') }}" class="btn btn-primary">愛犬登録</a>
+                            <a href="{{ route('dog.add') }}" class="btn btn-primary">愛犬登録</a>
                         </td>
                     </table>
                 </tbody>   

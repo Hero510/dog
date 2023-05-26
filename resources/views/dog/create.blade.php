@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mx-auto">
+            <div class="col-md-8 mx-auto text-center">
                 <h3>愛犬登録</h3>
                 
                     
@@ -16,74 +16,67 @@
                             @endforeach
                         </ul>
                     @endif
-                    <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                <div class="card-body">
+                    <form action="{{ route('dog.create') }}" method="post" enctype="multipart/form-data">
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">氏名</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">名前</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input  type="text" class="form-control" id="name" name="name" placeholder="例) わん隊長" value="{{ old('name') }}" >
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">ニックネーム</label>
+                            <label for="age" class="col-md-4 col-form-label text-md-end">年齢</label>
                             <div class="col-md-6">
-                                <input id="nickname" type="text" class="form-control @error('name') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="name" autofocus>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input  type="text" class="form-control" id="age" name="age" placeholder="例) 3か月、1歳" value="{{ old('age') }}" >
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">メールアドレス</label>
+                            <label for="breeding_way" class="col-md-4 col-form-label text-md-end">飼育方法</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input  type="text" class="form-control" id="breeding_way" name="breeding_way" placeholder="例) 室内、屋内" value="{{ old('breeding_way') }}" >
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">パスワード</label>
+                            <label for="house" class="col-md-4 col-form-label text-md-end">ハウスの有無</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input  type="text" class="form-control" id="house" name="house" placeholder="例) 寝るときだけハウスなど" value="{{ old('house') }}" >
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">パスワード(確認用)</label>
+                            <label for="walk" class="col-md-4 col-form-label text-md-end">散歩の頻度</label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input  type="text" class="form-control" id="walk" name="walk" placeholder="例) なし、1日2回の合計30分など" value="{{ old('walk') }}" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="food" class="col-md-4 col-form-label text-md-end">普段食べているもの</label>
+                            <div class="col-md-6">
+                                <input  type="text" class="form-control" id="food" name="food" placeholder="例) フード名または手作りなど" value="{{ old('food') }}" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="dog_breed_id" class="col-md-4 col-form-label text-md-end">犬種</label>
+                            <div class="col-md-6">
+                                <select id="dog_breed_id" name="dog_breed_id" class="form-control">
+                                    <option value="">未選択</option>
+
+                                  @foreach($categories as $id => $dog_breed)
+                                  <option value="{{ $id }}">
+                                    {{ $dog_breed }}
+                                  </option>  
+                                  @endforeach
+                                </select>
                             </div>
                         </div>
                         
-                        <div class="form-group row">
-              <label class="col-sm-2">商品カテゴリ</label>
-              <div class="col-sm-3">
-                <select name="categoryId" class="form-control">
-                  <option value="">未選択</option>
-
-                  @foreach($categories as $id => $dog_breed)
-                  <option value="{{ $id }}">
-                    {{ $dog_breed }}
-                  </option>  
-                  @endforeach
-                </select>
-              </div>
-            </div>
+                        <div class="row mb-3">
+                            <label for=image class="col-md-4 col-form-label text-md-end">画像を選択</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control-file" id="image" name="image">
+                            </div>
+                        </div>
+                        @csrf
+                        <input type="hidden" name="user_id" value={{ $userId }}>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">登録する</button>
@@ -91,6 +84,7 @@
                         </div>
                     </form>
                 </div>
+            </div>
         </div>
     </div>
 @endsection

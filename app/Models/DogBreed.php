@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class DogBreed extends Model
 {
-
-    protected $fillable = [
-        'dog_breed'
-        ]; 
+    
+    use HasFactory;
+    
+    
+    protected $guarded = array('id');
     
     public function dogbreed()
     {
