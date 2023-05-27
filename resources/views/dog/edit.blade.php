@@ -1,11 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('title', 'DogsInformation', 'create')
-
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
 
 
 @section('content')
@@ -74,34 +68,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="container" style="margin-top:30px;">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-4 text-center">
-                                        <div id="cropie-demo" style="width:250px"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                <label for="upload" class="col-md-4 col-form-label text-md-end">画像を選択</label>
-                                    <div class="col-md-6">
-                                        <input type="file" class="form-control-file" id="upload" name="image">
-                                        <br />
-                                        <input type="button" class="btn btn-success upload-result" value="切り取りした画像を確定">
-                                    </div>
-                                    <div class="col-md-2">
-                                    <div id="image-preview"
-                                        style="background:#e1e1e1;padding:30px;height:200px;"></div>
-                                    </div>
-                                </div>
+                        
+                        <div class="row mb-3">
+                            <label for=image class="col-md-4 col-form-label text-md-end">画像を選択</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control-file" id="image" name="image">
                             </div>
                         </div>
-                    
-                         
-                        
-                        
-                        
                         @csrf
-                        <input type="hidden" id="image_path" name="image_path" value="">
+                        <input type="hidden" name="user_id" value={{ $userId }}>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">登録する</button>

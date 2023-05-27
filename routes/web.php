@@ -37,6 +37,7 @@ use App\Http\Controllers\Dog\DogController;
     Route::controller(DogController::class)->group(function() {
     Route::get('dog/create', 'add')->name('dog.add');
     Route::post('dog/create', 'create')->name('dog.create');
+    Route::post('image-crop', 'imageCropPost')->name("imageCrop");
 });
 
 Auth::routes();

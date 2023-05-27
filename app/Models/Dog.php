@@ -17,7 +17,6 @@ class Dog extends Model
         'house' => 'required',
         'walk' => 'required',
         'food' => 'required',
-        'user_id' => 'required',
         );
         
     

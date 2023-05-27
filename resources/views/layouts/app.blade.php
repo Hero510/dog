@@ -16,6 +16,8 @@
     <!-- Scripts -->
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 </head>
 <body>
     <div id="app">
@@ -77,5 +79,66 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $uploadCrop = $('#cropie-demo').croppie({
+            enableExif: true,
+            viewport: {
+                width: 200,
+                height: 200,
+                type: 'circle'
+            },
+            boundary: {
+                width: 300,
+                height: 300
+            }
+        });
+
+
+        $('#upload').on('change', function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $uploadCrop.croppie('bind', {
+                    url: e.target.result
+                }).then(function() {
+                    console.log('jQuery bind complete');
+                });
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+
+        $('.upload-result').on('click', function(ev) {
+        //console.log('押された');
+            $uploadCrop.croppie('result', {
+                type: 'canvas',
+                size: 'viewport'
+            }).then(function(resp) {
+            
+                $.ajax({
+                  
+                    url: "/image-crop",
+                    type: "POST",
+                    data: {
+                        "image": resp
+                    },
+                    success: function(data) {
+                        html = '<img src="' + resp + '" />';
+                        $("#image-preview").html(html);
+                        $("#image_path").val(data.image_path);
+                    }
+                });
+            });
+        });
+
+    </script>
 </body>
 </html>

@@ -19,7 +19,23 @@ class DogController extends Controller
         $userId = Auth::id();
         return view('dog.create',['categories' => $categories, 'userId' => $userId]);
     }
+    
+ 
+    public function imageCropPost(Request $request)
+    {
+        $data = $request->image;
 
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+
+        $data = base64_decode($data);
+        $image_name = time() . '.png';
+        $path = public_path() . "/images/" . $image_name;
+
+        file_put_contents($path, $data);
+
+        return response()->json(['status' => 1, 'image_path'=>$image_name, 'message' => "Image uploaded successfully"]);
+    }
     public function create(Request $request)
     {
        
@@ -27,26 +43,28 @@ class DogController extends Controller
         $this->validate($request, Dog::$rules);
         
         // dogの登録
-        $dog = new Dog();
+        // $dog = new Dog();
         $form = $request->all();
         // dd($form);
          
-        if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $dog->image_path = basename($path);
-        } else {
-            $dog->image_path = null;
-        }
+        
         
         unset($form['_token']);
         unset($form['image']);
+                
         
-        
-        $dog->fill($form);
-        $dog->save();
+        // $dog->fill($form);
+        // $dog->user_id = Auth::id();
+    
+        $user = Auth::user();
+        $user->dogs()->create($form);
+        // $dog->save();
 
         // 登録完了後のリダイレクト先などの処理を追加
 
         return redirect('mypage');
     }
+    
 }
+
+
