@@ -20,7 +20,7 @@ class UserController extends Controller
     
     
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
 
     {
     
@@ -35,6 +35,7 @@ class UserController extends Controller
         // リクエストデータ受取
         
         $form = $request->all();
+        dd($form);
         
         // フォームトークン削除
         
@@ -50,7 +51,7 @@ class UserController extends Controller
         
         unset($form[$key]);
         
-         }
+            }
         
          }
         

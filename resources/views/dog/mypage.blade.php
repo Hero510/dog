@@ -1,65 +1,68 @@
 @extends('layouts.main')
 @section('title', 'DogsInformation', 'mypage')
 
-<head>
-    <link href="{{ secure_asset('css/home.css') }}" rel="stylesheet">
-</head>
-
 @section('content')
-    <div class="container">
+<div class="container">
+    <div class="row">
         <div class="col-md-6">
-            <h2>User Information</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Nickname</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $auth->name }}</td>
-                        <td>{{ $auth->email }}</td>
-                        <td>{{ $auth->nickname }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <a href="{{ route('user.edit',['id' => $auth->id]) }}" class="btn btn-primary text-center">ユーザー情報を編集する</a>
+            <div class="card user-information">
+                <div class="card-body">
+                    <h2 class="card-title">User Information</h2>
+                    <div class="user-details">
+                        <h3>{{ $auth->name }}</h3>
+                        <p>Email: {{ $auth->email }}</p>
+                        <p>Nickname: {{ $auth->nickname }}</p>
+                    </div>
+                    <a href="{{ route('user.edit',['id' => $auth->id]) }}" class="btn btn-primary text-center">ユーザー情報を編集する</a>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
-            <div class="dog information">
-                <h2>Dog Information</h2>
-                <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Dog Name</th>
-                                <th>Dog Breed</th>
-                                <th>age</th>
-                                <th>Breeding Way</th>
-                                <th>House</th>
-                                <th>Food</th>
-                            </tr>
-                        </thead>
-                        @foreach ($auth->dogs as $dog)
-                            <img src="{{ secure_asset('images/' . $dog->image_path) }}">
-                            <tbody>
-                                <tr>
-                                    <td>{{ $dog->name }}</td>
-                                    <td>{{ $dog->dog_breed_id }}</td>
-                                    <td>{{ $dog->age }}</td>
-                                    <td>{{ $dog->breeding_way }}</td>
-                                    <td>{{ $dog->house }}</td>
-                                    <td>{{ $dog->food }}</td>
-                                </tr>
-                            </tbody>
-                        @endforeach      
-            <a href="{{ route('dog.add') }}" class="btn btn-primary">愛犬登録</a>
-                </table>
-            </div>                
+            <div class="card dog-information">
+                <div class="card-body">
+                    <h2 class="card-title">Dog Information</h2>
+                    @foreach ($auth->dogs as $dog)
+                    <div class="dog-item">
+                        <div class="dog-image">
+                            <img src="{{ secure_asset('images/' . $dog->image_path) }}" alt="{{ $dog->name }}">
+                        </div>
+                        <div class="dog-details">
+                            <h3>{{ $dog->name }}</h3>
+                            <div class="dog-info">
+                                <div class="row">
+                                    <div class="col-sm-4"><span class="info-label">Dog Breed:</span></div>
+                                    <div class="col-sm-8">{{ $dog->breed()->dog_breed }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4"><span class="info-label">Age:</span></div>
+                                    <div class="col-sm-8">{{ $dog->age }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4"><span class="info-label">Breeding Way:</span></div>
+                                    <div class="col-sm-8">{{ $dog->breeding_way }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4"><span class="info-label">House:</span></div>
+                                    <div class="col-sm-8">{{ $dog->house }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4"><span class="info-label">Food:</span></div>
+                                    <div class="col-sm-8">{{ $dog->food }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="text-center mt-4">
+                        @if (Auth::user()->dogs()->exists())
+                        <a href="{{ route('dog.edit') }}" class="btn btn-primary">愛犬情報の変更</a>
+                        @else
+                        <a href="{{ route('dog.add') }}" class="btn btn-primary">愛犬登録</a>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
-        <tbody>
-        </tbody>   
-             <!--退会処理を追加-->
     </div>
+</div>
 @endsection

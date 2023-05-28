@@ -9,13 +9,14 @@
             <div class="card">
                 <div class="card-header text-center">会員情報の変更</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update', ['user' => $auth->id]) }}">
+                    <form method="post" action="{{ route('user.update', ['user' => $auth->id]) }}">
                         @csrf
+                        @method('PUT')
                         <input type = "hidden" name = "_method" value = "put"> 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">氏名</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" value="{{ $auth->name }}">
+                                <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" value="{{ $auth->name }}" autocomplete="name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -37,7 +38,7 @@
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">メールアドレス</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="email" value="{{ $auth->email }}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="email" name="email" value="{{ $auth->email }}" autocomplete="email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -18,16 +18,17 @@ class Dog extends Model
         'walk' => 'required',
         'food' => 'required',
         );
-        
+   
     
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     
-    public function dogbreed()
+    public function breed()
     {
-        return $this->hasOne(DogBreed::class);
+        return DogBreed::find($this->dog_breed_id);
+        // return $this->hasOne(DogBreed::class);
     }
     
     

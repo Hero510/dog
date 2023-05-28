@@ -46,7 +46,7 @@ class DogController extends Controller
         // $dog = new Dog();
         $form = $request->all();
         // dd($form);
-         
+        
         
         
         unset($form['_token']);
@@ -62,6 +62,56 @@ class DogController extends Controller
 
         // 登録完了後のリダイレクト先などの処理を追加
 
+        return redirect('mypage');
+    }
+    
+    public function edit(Request $request)
+    {
+    
+        $category = new DogBreed;
+        $categories = $category->dogbreed();
+        $auth = Auth::user();
+        return view('dog.edit',['categories' => $categories, 'auth' => $auth]);
+    }
+    
+    public function update(Request $request)
+    {
+       
+        
+        $this->validate($request, Dog::$rules);
+        
+       
+        $form = $request->all();
+         
+        $userId = Auth::id(); // ログインユーザーのIDを取得
+        $userId = Auth::id(); // ログインユーザーのIDを取得
+        $dog = Dog::where('user_id', $userId)->first();
+        // dd($dog);
+
+        $originalImagePath = $dog->image_path;
+        
+        
+        if ($request->hasFile('image')) {
+            // 画像をアップロードして新しいパスを取得
+            $newImagePath = $request->file('image')->store('images');
+            
+            // 新しいパスをフォームに設定
+            $form['image_path'] = $newImagePath;
+            
+        } else {
+            // 画像がアップロードされなかった場合、元の画像パスをフォームに設定
+            $form['image_path'] = $originalImagePath;
+        }
+        
+        unset($form['_token']);
+        unset($form['image']);
+                
+       
+    
+        $user = Auth::user();
+        // dd($form);
+        $user->dogs()->update($form);
+       
         return redirect('mypage');
     }
     

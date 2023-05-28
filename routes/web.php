@@ -30,7 +30,7 @@ use App\Http\Controllers\Dog\MypageController;
 use App\Http\Controllers\Dog\UserController;
     Route::controller(UserController::class)->group(function() {
     Route::get('user/{id}/edit', 'edit')->name('user.edit');
-    Route::put('user/{user}', 'update')->name('user.update');
+    Route::post('user/{user}', 'update')->name('user.update');
 });
 
 use App\Http\Controllers\Dog\DogController;
@@ -38,6 +38,8 @@ use App\Http\Controllers\Dog\DogController;
     Route::get('dog/create', 'add')->name('dog.add');
     Route::post('dog/create', 'create')->name('dog.create');
     Route::post('image-crop', 'imageCropPost')->name("imageCrop");
+    Route::get('dog/edit', 'edit')->name('dog.edit');
+    Route::post('dog/edit', 'update')->name('dog.update');
 });
 
 Auth::routes();
