@@ -83,7 +83,7 @@ class DogController extends Controller
        
         $form = $request->all();
          
-        $userId = Auth::id(); // ログインユーザーのIDを取得
+      
         $userId = Auth::id(); // ログインユーザーのIDを取得
         $dog = Dog::where('user_id', $userId)->first();
         // dd($dog);

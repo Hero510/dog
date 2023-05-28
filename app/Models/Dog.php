@@ -31,5 +31,9 @@ class Dog extends Model
         // return $this->hasOne(DogBreed::class);
     }
     
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
     
 }

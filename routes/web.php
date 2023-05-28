@@ -42,6 +42,17 @@ use App\Http\Controllers\Dog\DogController;
     Route::post('dog/edit', 'update')->name('dog.update');
 });
 
+use App\Http\Controllers\Dog\PostController;
+    Route::controller(PostController::class)->group(function() {
+    Route::get('post/create', 'add')->name('post.add');
+    Route::post('post/create', 'create')->name('post.create');
+    Route::post('image-crop', 'imageCropPost')->name("imageCrop");
+});
+
+// use App\Http\Controllers\Dog\ImageCropController;
+//     Route::controller(ImageCropController::class)->group(function() {
+// });
+
 Auth::routes();
 
 // Route::post('logout', [LoginController::class, 'logout'])->name('logout');
