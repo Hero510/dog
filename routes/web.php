@@ -44,9 +44,10 @@ use App\Http\Controllers\Dog\DogController;
 
 use App\Http\Controllers\Dog\PostController;
     Route::controller(PostController::class)->group(function() {
-    Route::get('post/create', 'add')->name('post.add');
-    Route::post('post/create', 'create')->name('post.create');
+    Route::get('post/create', 'add')->name('post.add')->middleware('auth');
+    Route::post('post/create', 'create')->name('post.create')->middleware('auth');
     Route::post('image-crop', 'imageCropPost')->name("imageCrop");
+    Route::get('post/index', 'index')->name('post.index'); 
 });
 
 // use App\Http\Controllers\Dog\ImageCropController;

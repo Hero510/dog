@@ -83,12 +83,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
 
     <script type="text/javascript">
-        $.ajaxSetup({
+    $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        
         $uploadCrop = $('#cropie-demo').croppie({
             enableExif: true,
             viewport: {
@@ -101,8 +101,7 @@
                 height: 300
             }
         });
-
-
+        
         $('#upload').on('change', function() {
             var reader = new FileReader();
             reader.onload = function(e) {
@@ -114,17 +113,13 @@
             }
             reader.readAsDataURL(this.files[0]);
         });
-
-
+        
         $('.upload-result').on('click', function(ev) {
-        //console.log('押された');
             $uploadCrop.croppie('result', {
                 type: 'canvas',
-                size: 'viewport'
+                //size: { width: 50, height: 50 } // 保存するサイズを指定
             }).then(function(resp) {
-            
                 $.ajax({
-                  
                     url: "/image-crop",
                     type: "POST",
                     data: {
@@ -138,6 +133,7 @@
                 });
             });
         });
+
 
     </script>
 </body>

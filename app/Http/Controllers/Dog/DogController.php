@@ -77,42 +77,28 @@ class DogController extends Controller
     public function update(Request $request)
     {
        
-        
-        $this->validate($request, Dog::$rules);
-        
-       
         $form = $request->all();
-         
-      
-        $userId = Auth::id(); // ログインユーザーのIDを取得
+        // dd($form);
+        $userId = Auth::id();
         $dog = Dog::where('user_id', $userId)->first();
-        // dd($dog);
-
         $originalImagePath = $dog->image_path;
-        
-        
         if ($request->hasFile('image')) {
-            // 画像をアップロードして新しいパスを取得
-            $newImagePath = $request->file('image')->store('images');
-            
-            // 新しいパスをフォームに設定
-            $form['image_path'] = $newImagePath;
-            
+            unset($form['image']);
         } else {
-            // 画像がアップロードされなかった場合、元の画像パスをフォームに設定
+            // 画像がアップロードされなかった場合、既存の画像パスをフォームに設定
             $form['image_path'] = $originalImagePath;
         }
         
+        // dd($originalImagePath);
+        // 余分なパラメータを削除
         unset($form['_token']);
-        unset($form['image']);
-                
-       
-    
+        // unset($form['image']);
+        
         $user = Auth::user();
-        // dd($form);
         $user->dogs()->update($form);
-       
+        
         return redirect('mypage');
+
     }
     
 }

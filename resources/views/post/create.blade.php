@@ -24,12 +24,12 @@
 
                 <div class="mb-3">
                     <label for="title" class="form-label">タイトル</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="※最大50文字まで" value="{{ old('title') }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="body" class="form-label">本文</label>
-                    <textarea class="form-control" id="body" name="body" rows="8">{{ old('body') }}</textarea>
+                    <textarea class="form-control" id="body" name="body" placeholder="※最大350文字まで" rows="8">{{ old('body') }}</textarea>
                 </div>
 
                 <div class="mb-3">

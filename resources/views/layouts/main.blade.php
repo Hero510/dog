@@ -24,7 +24,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">投稿一覧</a>
+                                <a class="nav-link" href="{{ route('post.index') }}">投稿一覧</a>
                             </li>
                             <li class="nav-item">
                                <a class="nav-link" href="{{ route('post.add') }}">新規投稿</a>

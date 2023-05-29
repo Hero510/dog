@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dog;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\DogBreed;
 
 class PostController extends Controller
 {
@@ -63,5 +64,17 @@ class PostController extends Controller
         // 登録完了後のリダイレクト先などの処理を追加
 
         return redirect('mypage');
+    }
+    
+    public function index(Request $request)
+    {
+        $posts = Post::all()->sortByDesc('updated_at');
+        
+        // $postId = Post::pluck('id');
+        // $dog = Dog::where('dog_id', $postId)->first();
+        // $auth = Auth::user();
+        
+        return view('dog.index', ['posts' => $posts]);
+        
     }
 }
