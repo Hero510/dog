@@ -16,9 +16,18 @@ class Post extends Model
         'body' => 'required|max:300',
         'image_path' => 'required',
         );
+        
+    public static $editRules = array(
+     
+        );
     
     public function dog()
     {
         return $this->belongsTo(Dog::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

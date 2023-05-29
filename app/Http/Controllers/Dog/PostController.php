@@ -79,25 +79,28 @@ class PostController extends Controller
     }
     
     public function edit(Request $request)
-    {
-    
+    {   
         $post = Post::find($request->id);
-        if (empty($news)) {
+        $auth = Auth::user();
+        // $userId = Auth::id();
+        // $dog = Dog::where('user_id', $userId)->first();
+        // $post = $dog->post;
+        // dd($post);
+        if (empty($post)) {
             abort(404);
         }
-        
-        return view('dog.edit', ['post_form' => $post]);
+       
+        return view('post.edit', ['post' => $post, 'auth' => $auth]);
     }
     
     public function update(Request $request)
     {
-       
-       
-        $this->validate($request, Post::$rules);
-        $post = Post::find($request->id);
-        
-       
         $form = $request->all();
+        // フォームから送信されたポストを参照
+       
+        $postId = $request->input('post_id');
+        $post = Post::find($postId);
+        
         $originalImagePath = $post->image_path;
         if ($request->hasFile('image')) {
             unset($form['image']);
@@ -106,31 +109,25 @@ class PostController extends Controller
             $form['image_path'] = $originalImagePath;
         }
         
-        
         unset($form['_token']);
         
-        $user = Auth::user();
-        $dogId = null;
-        $dog = $user->dogs()->first();
-        if ($dog) {
-            $dogId = $dog->id;
-        }
-
-        // dd($dogId);
-        $dog->post()->create($form);       
+        // ポストの更新
+       
+        // dd($form);
+        $post->update($form);
         
 
-        // 登録完了後のリダイレクト先などの処理を追加
-
-        return redirect('dog.index');
+        return redirect()->route('post.index');
+        
     }
     
     public function delete(Request $request)
     {
         $post = Post::find($request->id);
+        // dd($post);
         
         $post->delete();
         
-        return redirect('dog.index');
+        return redirect()->route('post.index');
     }
 }
