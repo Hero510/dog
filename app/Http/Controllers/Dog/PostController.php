@@ -77,4 +77,60 @@ class PostController extends Controller
         return view('dog.index', ['posts' => $posts]);
         
     }
+    
+    public function edit(Request $request)
+    {
+    
+        $post = Post::find($request->id);
+        if (empty($news)) {
+            abort(404);
+        }
+        
+        return view('dog.edit', ['post_form' => $post]);
+    }
+    
+    public function update(Request $request)
+    {
+       
+       
+        $this->validate($request, Post::$rules);
+        $post = Post::find($request->id);
+        
+       
+        $form = $request->all();
+        $originalImagePath = $post->image_path;
+        if ($request->hasFile('image')) {
+            unset($form['image']);
+        } else {
+            // 画像がアップロードされなかった場合、既存の画像パスをフォームに設定
+            $form['image_path'] = $originalImagePath;
+        }
+        
+        
+        unset($form['_token']);
+        
+        $user = Auth::user();
+        $dogId = null;
+        $dog = $user->dogs()->first();
+        if ($dog) {
+            $dogId = $dog->id;
+        }
+
+        // dd($dogId);
+        $dog->post()->create($form);       
+        
+
+        // 登録完了後のリダイレクト先などの処理を追加
+
+        return redirect('dog.index');
+    }
+    
+    public function delete(Request $request)
+    {
+        $post = Post::find($request->id);
+        
+        $post->delete();
+        
+        return redirect('dog.index');
+    }
 }

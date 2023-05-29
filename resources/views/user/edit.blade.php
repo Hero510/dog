@@ -9,10 +9,8 @@
             <div class="card">
                 <div class="card-header text-center">会員情報の変更</div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('user.update', ['user' => $auth->id]) }}">
+                    <form method="post" action="{{ route('user.update', ['id' => $auth->id]) }}">
                         @csrf
-                        @method('PUT')
-                        <input type = "hidden" name = "_method" value = "put"> 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">氏名</label>
                             <div class="col-md-6">
@@ -49,7 +47,18 @@
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">パスワード</label>
                             <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('name') is-invalid @enderror" name="password" value="" required autocomplete="new-password">
+                            <input id="password" type="password" class="form-control @error('name') is-invalid @enderror" name="password" value="" required autocomplete="password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">確認用パスワード</label>
+                            <div class="col-md-6">
+                            <input id="password_confirmation" type="password" class="form-control @error('name') is-invalid @enderror" name="password_confirmation" value="" required autocomplete="password_confirmation">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

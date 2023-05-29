@@ -18,6 +18,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $guarded = array('id');
+    
+    public static $rules = array(
+        'name' => 'required',
+        'nickname' => 'required',
+        'email' => 'required',
+        'password' => 'required|min:8|confirmed',
+        );
+    
     protected $fillable = [
         'name',
         'email',
@@ -44,15 +53,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    protected static $rules = [
-    'password' => 'required|min:8|confirmed',
-    ];
-    
-    public static $editRules = array(
-
-    'password' => 'confirmed'
-
-    );
     
     public function dogs()
     {

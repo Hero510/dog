@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dog;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 
@@ -26,16 +27,16 @@ class UserController extends Controller
     
         // バリデーション\
         
-        $this->validate($request, User::$editRules);
+        $this->validate($request, User::$rules);
         
         // 対象レコード
         
-        $auth = User::find($id);
+        $auth = User::find($request->id);
         
         // リクエストデータ受取
         
         $form = $request->all();
-        dd($form);
+        // dd($form);
         
         // フォームトークン削除
         

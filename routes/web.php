@@ -30,7 +30,7 @@ use App\Http\Controllers\Dog\MypageController;
 use App\Http\Controllers\Dog\UserController;
     Route::controller(UserController::class)->group(function() {
     Route::get('user/{id}/edit', 'edit')->name('user.edit');
-    Route::post('user/{user}', 'update')->name('user.update');
+    Route::post('user/{id}', 'update')->name('user.update');
 });
 
 use App\Http\Controllers\Dog\DogController;
@@ -48,6 +48,9 @@ use App\Http\Controllers\Dog\PostController;
     Route::post('post/create', 'create')->name('post.create')->middleware('auth');
     Route::post('image-crop', 'imageCropPost')->name("imageCrop");
     Route::get('post/index', 'index')->name('post.index'); 
+    Route::get('post/edit', 'edit')->name('post.edit');
+    Route::post('post/edit', 'update')->name('post.update');
+    Route::get('post/delete', 'delete')->name('post.delete');
 });
 
 // use App\Http\Controllers\Dog\ImageCropController;
