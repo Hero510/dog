@@ -19,7 +19,7 @@
                             <div class="dog-info">
                                 <div class="row">
                                     <div class="col-sm-4"><span class="info-label">Dog Breed:</span></div>
-                                    <div class="col-sm-8">{{ $dog->breed()->dog_breed }}</div>
+                                    <div class="col-sm-8">{{ $dog->breed->dog_breed }}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4"><span class="info-label">Age:</span></div>
@@ -43,9 +43,9 @@
                     @endforeach
                     <div class="text-center mt-4">
                         @if (Auth::user()->dogs()->exists())
-                        <a href="{{ route('dog.edit') }}" class="btn btn-primary">愛犬情報の変更</a>
+                            <a href="{{ route('dog.edit') }}" class="btn btn-primary">愛犬情報の変更</a>
                         @else
-                        <a href="{{ route('dog.add') }}" class="btn btn-primary">愛犬登録</a>
+                            <a href="{{ route('dog.add') }}" class="btn btn-primary">愛犬登録</a>
                         @endif
                     </div>
                 </div>

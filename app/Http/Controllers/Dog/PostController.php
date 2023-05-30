@@ -56,6 +56,7 @@ class PostController extends Controller
         if ($dog) {
             $dogId = $dog->id;
         }
+        // ユーザーに選んでもらうドッグのidにする
 
         // dd($dogId);
         $dog->post()->create($form);       
@@ -77,6 +78,57 @@ class PostController extends Controller
         return view('dog.index', ['posts' => $posts]);
         
     }
+    
+    public function show(Request $request)
+    {
+        
+        $category = new DogBreed;
+        $categories = $category->dogbreed();
+       
+        $searchWord = $request->input('searchWord');
+        $categoryId = $request->input('categoryId');
+       
+        
+        return view('post.serch', ['categories' => $categories]);
+        
+    }
+    
+    public function search(Request $request)
+{
+    $searchWord = $request->input('searchWord');
+    // $categoryId = $request->input('categoryId');
+
+    $query = Post::query();
+    
+    $posts = Post::where(function ($query) use ($searchWord) {
+        $query->where('title', 'like', "%$searchWord%")
+        ->orWhere('body', 'like', "%$searchWord%");
+        })->get();
+    
+    // if (isset($searchWord)) {
+    // $searchWord = str_replace(['%', '_'], ['\%', '\_'], $searchWord);
+    // $query->where('title', 'like', "%$searchWord%")
+    //     ->orWhere('content', 'like', "%$searchWord%");
+    // }
+    
+    // if (isset($categoryId)) {
+    //     $query->whereHas('dog', function ($query) use ($categoryId) {
+    //         $query->whereHas('breed', function ($query) use ($categoryId) {
+    //             $query->where('category_id', $categoryId);
+    //         });
+    //     });
+    // }
+    // dd($posts);
+    // $posts = $query->orderBy('created_at', 'desc');
+    
+    // $category = new DogBreed;
+    // $categories = $category->dogbreed();
+
+    return view('post.serch', ['posts' => $posts]);
+
+    
+}   
+
     
     public function edit(Request $request)
     {   

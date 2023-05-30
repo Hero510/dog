@@ -30,7 +30,7 @@
                                <a class="nav-link" href="{{ route('post.add') }}">新規投稿</a>
                             </li>
                             <li class="nav-item">
-                               <a class="nav-link" href="#">投稿検索</a>
+                               <a class="nav-link" href="{{ route('post.show') }}">投稿検索</a>
                             </li>
                         </ul>
                         

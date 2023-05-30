@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @foreach ($posts as $key => $post)
+            @foreach ($posts as $post)
                 <div class="row border p-3 mb-3">
                     <div class="col-md-4">
                         <div class="image">
@@ -41,7 +41,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Breed</strong></td>
-                                        <td><small>{{ $post->dog->breed()->dog_breed }}</small></td>
+                                        <td><small>{{ $post->dog->breed->dog_breed }}</small></td>
                                         <td><strong>Age</strong></td>
                                         <td><small>{{ $post->dog->age }}</small></td>
                                     </tr>
@@ -62,9 +62,6 @@
                         </div>
                     </div>
                 </div>
-                @if ($key != count($posts) - 1)
-                    <hr color="#c0c0c0">
-                @endif
             @endforeach
         </div>
     </div>

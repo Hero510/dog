@@ -36,7 +36,16 @@ class RegisterController extends Controller
     // protected function redirectTo() {
     //    return route('users.show');
     // }
+    protected function redirectTo()
+    {
+        $user = Auth::user();
 
+        if ($user->dog_id === null) {
+            return 'dog/create';
+        } else {
+            return $this->redirectTo;
+        }
+    }
     /**
      * Create a new controller instance.
      *

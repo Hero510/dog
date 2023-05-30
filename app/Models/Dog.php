@@ -27,8 +27,8 @@ class Dog extends Model
     
     public function breed()
     {
-        return DogBreed::find($this->dog_breed_id);
-        // return $this->hasOne(DogBreed::class);
+        //  return DogBreed::find($this->dog_breed_id);
+      return $this->belongsTo(DogBreed::class,'dog_breed_id','id');
     }
     
     public function post()

@@ -63,7 +63,7 @@
                                     <label for="dog_breed_id" class="col-md-4 col-form-label text-md-end">犬種</label>
                                     <div class="col-md-6">
                                         <select id="dog_breed_id" name="dog_breed_id" class="form-control">
-                                            <option value="{{ $dog->dog_breed_id }}">{{ $dog->breed()->dog_breed  }}</option>
+                                            <option value="{{ $dog->dog_breed_id }}">{{ $dog->breed->dog_breed  }}</option>
                                             @foreach($categories as $id => $dog_breed)
                                                 <option value="{{ $id }}">{{ $dog_breed }}</option>
                                             @endforeach
