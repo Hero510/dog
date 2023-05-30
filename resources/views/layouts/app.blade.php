@@ -117,7 +117,7 @@
         $('.upload-result').on('click', function(ev) {
             $uploadCrop.croppie('result', {
                 type: 'canvas',
-                //size: { width: 50, height: 50 } // 保存するサイズを指定
+                size: { width: 50, height: 50 } // 保存するサイズを指定
             }).then(function(resp) {
                 $.ajax({
                     url: "/image-crop",

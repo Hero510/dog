@@ -74,5 +74,15 @@ class UserController extends Controller
     
     }
 
-        
+    public function destroy()
+{
+    $user = Auth::user();
+
+    
+    $user->delete();
+
+    Auth::logout();
+
+    return redirect()->route('home')->with('success', '退会処理が完了しました。');
+}
 }

@@ -21,9 +21,10 @@
                         <p class="body mt-4">{{ $post->body }}</p>
                         @if (Auth::check() && $post->dog->user_id == Auth::user()->id)
                             <div class="float-md-end">
-                                <form action="" method="get" class="d-inline">
                                     <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-outline-success button-sm">編集</a>
-                                    <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-outline-danger button-sm me-2">削除</a>
+                                <form action="{{ route('post.delete', ['id' => $post->id]) }}" method="post" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger button-sm me-2">削除</button>
                                 </form>
                             </div>
                         @endif

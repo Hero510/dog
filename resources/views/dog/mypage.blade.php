@@ -1,22 +1,10 @@
 @extends('layouts.main')
-@section('title', 'DogsInformation', 'mypage')
+
+@section('title', 'DogsInformation - My Page')
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <div class="card user-information">
-                <div class="card-body">
-                    <h2 class="card-title">User Information</h2>
-                    <div class="user-details">
-                        <h3>{{ $auth->name }}</h3>
-                        <p>Email: {{ $auth->email }}</p>
-                        <p>Nickname: {{ $auth->nickname }}</p>
-                    </div>
-                    <a href="{{ route('user.edit',['id' => $auth->id]) }}" class="btn btn-primary text-center">ユーザー情報を編集する</a>
-                </div>
-            </div>
-        </div>
         <div class="col-md-6">
             <div class="card dog-information">
                 <div class="card-body">
@@ -63,6 +51,30 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card user-information">
+                <div class="card-body">
+                    <h2 class="card-title">User Information</h2>
+                    <div class="user-details text-center">
+                        <h3>{{ $auth->name }}</h3>
+                        <p>Email: {{ $auth->email }}</p>
+                        <p>Nickname: {{ $auth->nickname }}</p>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{{ route('user.edit',['id' => $auth->id]) }}" class="btn btn-primary">ユーザー情報を編集する</a>
+                    </div>
+                    <div class="text-sm-center mt-4">
+                        <form action="{{ route('user.destroy', ['id' => $auth->id]) }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link text-primary p-0" onclick="return confirm('本当に退会しますか？')">
+                                退会する
+                            </button>
+                        </form>
+                    </div>
+                </div>   
+            </div>
+        </div>
     </div>
 </div>
 @endsection
+

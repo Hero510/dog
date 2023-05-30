@@ -63,7 +63,7 @@ class PostController extends Controller
 
         // 登録完了後のリダイレクト先などの処理を追加
 
-        return redirect('mypage');
+        return redirect('post.index');
     }
     
     public function index(Request $request)
