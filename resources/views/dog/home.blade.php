@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'DogsInformation')
+@section('title', 'Dogs Information-ホーム-')
 
 <head>
     <link href="{{ secure_asset('css/home.css') }}" rel="stylesheet">

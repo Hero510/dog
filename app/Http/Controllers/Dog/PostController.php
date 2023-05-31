@@ -16,6 +16,14 @@ class PostController extends Controller
     {
         
         $auth = Auth::id();
+        //ドッグ情報の取得
+        $dog = Dog::where('user_id', $auth)->first();
+
+        if (!$dog) {
+        // 情報が存在しない場合
+        return redirect()->route('dog.create')->withErrors(['error' => '投稿には愛犬の登録が必要です。']);
+        }
+        
         return view('post.create',['auth' => $auth]);
     }
     
@@ -56,8 +64,7 @@ class PostController extends Controller
         if ($dog) {
             $dogId = $dog->id;
         }
-        // ユーザーに選んでもらうドッグのidにする
-
+       
         // dd($dogId);
         $dog->post()->create($form);       
         
@@ -82,14 +89,14 @@ class PostController extends Controller
     public function show(Request $request)
     {
         
-        $category = new DogBreed;
-        $categories = $category->dogbreed();
+        // $category = new DogBreed;
+        // $categories = $category->dogbreed();
        
-        $searchWord = $request->input('searchWord');
-        $categoryId = $request->input('categoryId');
+        // $searchWord = $request->input('searchWord');
+        // $categoryId = $request->input('categoryId');
        
         
-        return view('post.serch', ['categories' => $categories]);
+        return view('post.serch');
         
     }
     

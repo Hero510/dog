@@ -1,6 +1,6 @@
 <!--レイアウトは仮-->
-@extends('layouts.main')
-@section('title', 'DogsInformation', 'mypage-update')
+@extends('layouts.app')
+@section('title', 'Dogs Information-会員情報の編集-')
 
 @section('content')
 <div class="container">

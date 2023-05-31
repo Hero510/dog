@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'dogsinformation_index')
+@section('title', 'Dogs Information-投稿一覧-')
 
 @section('content')
     

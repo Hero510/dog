@@ -2,7 +2,7 @@
 <!--レイアウト仮-->
 @extends('layouts.post')
 
-@section('title', 'dogsinformation_post')
+@section('title', 'Dogs Information-新規投稿-')
 
 @section('content')
 <div class="container">

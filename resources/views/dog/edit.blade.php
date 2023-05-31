@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'DogsInformation', 'create')
+@section('title', 'Dogs Information-愛犬情報の編集-')
 
 @section('content')
     <div class="container">

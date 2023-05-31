@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'DogsInformation - My Page')
+@section('title', 'Dogs Information-マイページ-')
 
 @section('content')
 <div class="container">

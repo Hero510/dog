@@ -1,5 +1,7 @@
 <!--レイアウトは仮-->
-@extends('layouts.main')
+@extends('layouts.app')
+@section('title', 'Dogs Information-ログインフォーム-')
+
 
 @section('content')
 <div class="container">
@@ -38,11 +40,8 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">ログイン</button>
-                            </div>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">ログイン</button>
                         </div>
                     </form>
                 </div>

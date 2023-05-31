@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'dogsinformation_search')
+@section('title', 'Dogs Information-投稿検索-')
 
 @section('content')
 <div class="container">

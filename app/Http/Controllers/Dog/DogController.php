@@ -48,7 +48,7 @@ class DogController extends Controller
         // dd($form);
         
         
-        
+        // $request->session()->regenerateToken(); 
         unset($form['_token']);
         unset($form['image']);
                 

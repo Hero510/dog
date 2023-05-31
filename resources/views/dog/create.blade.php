@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'DogsInformation', 'create')
+@section('title', 'Dogs Information-愛犬登録-')
 
 @section('content')
     <div class="container">
@@ -62,7 +62,7 @@
                                 <label for="dog_breed_id" class="col-md-4 col-form-label text-md-end">犬種</label>
                                 <div class="col-md-6">
                                     <select id="dog_breed_id" name="dog_breed_id" class="form-control">
-                                        <option value="">未選択</option>
+                                        <option value="">犬種を選択</option>
                                         @foreach($categories as $id => $dog_breed)
                                             <option value="{{ $id }}">{{ $dog_breed }}</option>
                                         @endforeach
@@ -95,7 +95,7 @@
                             <input type="hidden" id="image_path" name="image_path" value="">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary">登録する</button>
+                                    <button id="submitButton" type="submit" class="btn btn-primary">登録する</button>
                                 </div>
                             </div>
                         </form>
