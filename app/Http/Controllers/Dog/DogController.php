@@ -36,6 +36,7 @@ class DogController extends Controller
 
         return response()->json(['status' => 1, 'image_path'=>$image_name, 'message' => "Image uploaded successfully"]);
     }
+    
     public function create(Request $request)
     {
        
@@ -48,7 +49,7 @@ class DogController extends Controller
         // dd($form);
         
         
-        // $request->session()->regenerateToken(); 
+        
         unset($form['_token']);
         unset($form['image']);
                 
@@ -60,7 +61,7 @@ class DogController extends Controller
         $user->dogs()->create($form);
         // $dog->save();
 
-        // 登録完了後のリダイレクト先などの処理を追加
+       
 
         return redirect('mypage');
     }
